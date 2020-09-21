@@ -1,5 +1,6 @@
 package net.kanstren.tcptunnel.forwarder;
 
+import net.kanstren.tcptunnel.Constants;
 import net.kanstren.tcptunnel.Main;
 import net.kanstren.tcptunnel.Params;
 import net.kanstren.tcptunnel.Utils;
@@ -17,7 +18,7 @@ import java.util.Date;
  * Any error on either socket causes the whole tunnel (both sockets) to be closed.
  */
 public class TCPTunnel extends Thread {
-  private SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MMM.dd HH:mm:ss");
+  private SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
   /** Configuration parameters. */
   private final Params params;
   /** Local endpoint for the tunnel. */

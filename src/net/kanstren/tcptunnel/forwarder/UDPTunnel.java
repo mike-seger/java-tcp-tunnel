@@ -1,5 +1,6 @@
 package net.kanstren.tcptunnel.forwarder;
 
+import net.kanstren.tcptunnel.Constants;
 import net.kanstren.tcptunnel.Params;
 import net.kanstren.tcptunnel.Utils;
 import net.kanstren.tcptunnel.observers.TCPObserver;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class UDPTunnel extends Thread {
   /** Formats dates for logging. */
-  private SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MMM.dd HH:mm:ss");
+  private SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
   /** Configuration parameters. */
   private final Params params;
   /** True if this tunnel is actively forwarding. False if stopped or not yet started. */

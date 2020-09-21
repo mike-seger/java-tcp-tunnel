@@ -1,7 +1,11 @@
 package net.kanstren.tcptunnel.observers;
 
+import net.kanstren.tcptunnel.Constants;
+
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Logs the observed data stream to console as strings decoded with the given character encoding id.
@@ -10,6 +14,7 @@ import java.io.PrintStream;
  * @author Teemu Kanstren.
  */
 public class StringConsoleLogger implements TCPObserver {
+  private SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
   /** System specific line separator. */
   public static String ln = System.getProperty("line.separator");
   /** For writing the logged data to console. */
@@ -37,9 +42,12 @@ public class StringConsoleLogger implements TCPObserver {
   @Override
   public void observe(byte[] buffer, int start, int count) throws IOException {
     String add = new String(buffer, start, count, encoding);
-    stream.print(ln+prefix+":"+ln+add);
+    String dateStr = sdf.format(new Date());
+    stream.print(ln+dateStr+": "+prefix+":"+ln+add);
     if (addLF) {
       stream.print(ln);
     }
+    
+    stream.print("# END --------------------------"+ln);
   }
 }

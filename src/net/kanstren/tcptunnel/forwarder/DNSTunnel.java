@@ -1,5 +1,6 @@
 package net.kanstren.tcptunnel.forwarder;
 
+import net.kanstren.tcptunnel.Constants;
 import net.kanstren.tcptunnel.Params;
 import net.kanstren.tcptunnel.Utils;
 
@@ -15,7 +16,7 @@ import java.util.Date;
  * Created by AlexZhuo on 2017/11/9.
  */
 public class DNSTunnel extends Thread {
-  private SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MMM.dd HH:mm:ss");
+  private SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
   /** Configuration parameters. */
   private final Params params;
   private boolean active = false;
