@@ -4,7 +4,9 @@ import net.kanstren.tcptunnel.Constants;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -14,7 +16,6 @@ import java.util.Date;
  * @author Teemu Kanstren.
  */
 public class StringConsoleLogger implements TCPObserver {
-  private SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
   /** System specific line separator. */
   public static String ln = System.getProperty("line.separator");
   /** For writing the logged data to console. */
@@ -42,12 +43,12 @@ public class StringConsoleLogger implements TCPObserver {
   @Override
   public void observe(byte[] buffer, int start, int count) throws IOException {
     String add = new String(buffer, start, count, encoding);
-    String dateStr = sdf.format(new Date());
+    String dateStr = Instant.now().toString();
     stream.print(ln+dateStr+": "+prefix+":"+ln+add);
     if (addLF) {
       stream.print(ln);
     }
-    
-    stream.print("# END --------------------------"+ln);
+
+    stream.print(ln+"# END --------------------------"+ln);
   }
 }
